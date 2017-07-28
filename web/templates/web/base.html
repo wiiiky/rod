@@ -1,0 +1,22 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+{% trans "Road of Destiny" as default_title %}
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>{{title|default:default_title}}</title>
+  <meta name="description" content="Road of Destiny">
+  <meta name="author" content="Wiky Lyu">
+  <script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <link href="//cdn.bootcss.com/materialize/0.100.1/css/materialize.min.css" rel="stylesheet">
+  <link href="{% static "css/base.css" %}" rel="stylesheet">
+  {% block head %}{% endblock %}
+</head>
+
+<body>
+  <script src="//cdn.bootcss.com/materialize/0.100.1/js/materialize.min.js"></script>
+  {% block body %}{% endblock %}
+</body>
+</html>

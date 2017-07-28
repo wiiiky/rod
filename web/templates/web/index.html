@@ -1,0 +1,14 @@
+{% extends 'web/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block head %}
+<link href="{% static "css/index.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="root" style="background:url('{% static "img/rain_forest.jpg" %}')">
+  <nav><div class="glass"/></nav>
+  <div class="enter-wrapper"><a class="enter-button" href="/">{% trans "Enter" %}</a></div>
+</div>
+{% endblock %}
