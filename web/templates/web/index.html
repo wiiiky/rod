@@ -9,6 +9,9 @@
 {% block body %}
 <div class="root" style="background:url('{% static "img/rain_forest.jpg" %}')">
   <nav><div class="glass"/></nav>
-  <div class="enter-wrapper"><a class="enter-button" href="/">{% trans "Enter" %}</a></div>
+  {% if n %}
+  <div class="enter-wrapper"><a class="enter-button" href="{% url 'novel' n.pk %}">{% trans "Enter" %}</a></div>
+  {% endif %}
 </div>
+<audio src="{% static "media/0.m4a" %}" loop="true" autoplay="true"></audio>
 {% endblock %}

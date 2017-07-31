@@ -4,5 +4,6 @@ from django.conf.urls import url, include
 from web import views
 
 urlpatterns = [
-    url(r'^$', views.index),
+    url(r'^$', views.index, name='index'),
+    url(r'^n/(?P<pk>\w+)', views.novel, name='novel'),
 ]
