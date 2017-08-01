@@ -11,11 +11,12 @@ def index(request):
 
 
 def novel(request, pk):
+    return chapter(request, pk, 1)
+
+def chapter(request, pk, seq):
     n = get_object_or_404(Novel, pk=pk, deleted=False)
-    c = get_object_or_404(Chapter, novel=n, seq=1)
-    pc = Chapter.objects.filter(
-        novel=n, seq__lt=c.seq).order_by('-seq').first()
+    c = get_object_or_404(Chapter, novel=n, seq=seq)
+    pc = Chapter.objects.filter(novel=n, seq__lt=c.seq).order_by('-seq').first()
     nc = Chapter.objects.filter(novel=n, seq__gt=c.seq).order_by('seq').first()
-    chapters = Chapter.objects.filter(
-        novel=n, deleted=False).defer('text').order_by('seq')
+    chapters = Chapter.objects.filter(novel=n).defer('text').order_by('seq')
     return render_to_response('web/novel.html', context=locals())
