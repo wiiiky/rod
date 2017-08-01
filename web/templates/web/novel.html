@@ -3,9 +3,51 @@
 {% load static %}
 
 {% block head %}
+<link href="{% static "css/novel.css" %}" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
 <div class="root">
+  <!-- <div class="navbar-fixed"> -->
+  <nav class="z-depth-2">
+    <div class="nav-wrapper blue-grey">
+      <a class="brand-logo center unselectable" href="/">{{n.name}}</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a></li>
+      </ul>
+    </div>
+  </nav>
+  <!-- </div> -->
+  <ul id="slide-out" class="side-nav">
+    {% for c in chapters %}
+    <li><a class="waves-effect" href="#!">{{ c.fullname }}</a></li>
+    {% endfor %}
+  </ul>
+  <div class="content">
+    <h5 class="title">{{ c.seq_name }} {{ c.title }}</h5>
+    <article class="article z-depth-3">
+      {% autoescape off %}
+      {{ c.text }}
+      {% endautoescape %}
+    </article>
+  </div>
+
+  <div class="footer z-depth-1 indigo lighten-5">
+    {% if nc %}<a class="previous waves-effect waves-light" >上一章 {{ nc.title }}</a>{% endif %}
+    {% if nc %}<a class="next waves-effect waves-light" >下一章 {{nc.title}}</a>{% endif %}
+  </div>
 </div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.button-collapse').sideNav({
+      closeOnClick: true,
+    });
+  });
+  var prevOffset = 0;
+  $(window).on('scroll', function(){
+    var scrollTop = $(window).scrollTop();
+    prevOffset=scrollTop;
+    console.log(prevOffset);
+  });
+</script>
 {% endblock %}

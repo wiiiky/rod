@@ -1,6 +1,7 @@
 # encoding=utf-8
 
 from django.db import models
+from web.utils import num2chinese
 import uuid
 
 
@@ -9,10 +10,13 @@ def default_uuid():
 
 
 class BaseModel(models.Model):
-    id = models.CharField(max_length=32, primary_key=True, default=default_uuid, editable=False)
-    ctime = models.DateTimeField(auto_now=True, db_index=True, help_text=u'创建时间')
+    id = models.CharField(max_length=32, primary_key=True,
+                          default=default_uuid, editable=False)
+    ctime = models.DateTimeField(
+        auto_now=True, db_index=True, help_text=u'创建时间')
     utime = models.DateTimeField(auto_now_add=True, help_text=u'更新时间')
-    deleted = models.BooleanField(default=False, db_index=True, help_text=u'是否删除')
+    deleted = models.BooleanField(
+        default=False, db_index=True, help_text=u'是否删除')
 
     def delete(self):
         self.deleted = True
@@ -37,3 +41,11 @@ class Chapter(BaseModel):
     seq = models.PositiveIntegerField(unique=True, help_text=u'章节编号')
     title = models.CharField(max_length=32, help_text=u'章节标题')
     text = models.TextField(help_text=u'正文,HTML格式')
+
+    @property
+    def seq_name(self):
+        return '第%s章' % num2chinese(self.seq, big=False, simp=True)
+
+    @property
+    def fullname(self):
+        return '%s %s' % (self.seq_name, self.title)

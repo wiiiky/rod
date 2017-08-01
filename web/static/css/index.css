@@ -24,10 +24,10 @@ div.enter-wrapper > a.enter-button {
   padding: 10px 18px;
   border-radius: 8px;
   border-width: 3px;
-  border-color: rgba(25,25,25,0.4);
+  border-color: rgba(25,25,25,0.4);``
   border-style: solid;
   position: relative;
-  top: 42%;
+  top: 46%;
   cursor: pointer;
   color: rgba(25,25,25,0.4);
   transition: border-color 0.2s ease-in;
