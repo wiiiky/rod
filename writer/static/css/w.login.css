@@ -1,0 +1,20 @@
+div.root {
+  text-align: center;
+}
+
+div.root > * {
+  text-align: left;
+}
+
+div.root > div.card {
+  width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  margin-top: 15%;
+  padding-top: 18px;
+}
+
+div.root > div.card > form button[type="submit"] {
+  float: right;
+}

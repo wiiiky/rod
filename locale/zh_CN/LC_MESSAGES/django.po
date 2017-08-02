@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-02 00:16+0800\n"
+"POT-Creation-Date: 2017-08-02 16:00+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: rod/settings.py:109
+#: rod/settings.py:114
 msgid "English"
 msgstr "英文"
 
-#: rod/settings.py:110
+#: rod/settings.py:115
 msgid "Simplified Chinese"
 msgstr "简体中文"
 
@@ -40,3 +40,28 @@ msgstr "上一章"
 #: web/templates/web/novel.html:11
 msgid "Next Chapter"
 msgstr "下一章"
+
+#: writer/templates/writer/base.html:3
+#| msgid "Road of Destiny"
+msgid "Edit - Road of Destiny"
+msgstr "编辑 - 命运之路"
+
+#: writer/templates/writer/login.html:17
+msgid "Username"
+msgstr "用户名"
+
+#: writer/templates/writer/login.html:22
+msgid "Password"
+msgstr "密码"
+
+#: writer/templates/writer/login.html:27
+msgid "Submit"
+msgstr "提交"
+
+#: writer/templates/writer/login.html:42
+msgid "input auth info please"
+msgstr "请输入验证信息"
+
+#: writer/templates/writer/login.html:53
+msgid "auth failed"
+msgstr "验证失败"
