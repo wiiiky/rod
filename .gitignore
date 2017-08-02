@@ -3,3 +3,4 @@ __pycache__
 /web/migrations/
 /writer/migrations/
 /static/
+db.sqlite3

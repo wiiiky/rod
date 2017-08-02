@@ -23,4 +23,4 @@ class DataPreprocessMiddleware(MiddlewareMixin):
         if request.method not in ('POST', 'PUT'):
             return
         if request.content_type == 'application/json':
-            request.data = json.loads(request.body)
+            request.data = json.loads(request.body.decode("utf-8"))
