@@ -1,0 +1,106 @@
+{% extends 'writer/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block head %}
+<link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/froala-editor/2.6.4/css/froala_editor.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/froala-editor/2.6.4/css/froala_style.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/froala-editor/2.6.4/css/plugins/char_counter.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="root">
+  <ul id="menu-dropdown" class="dropdown-content">
+    <li><a href="#!">one</a></li>
+    <li><a href="#!">two</a></li>
+    <li class="divider"></li>
+    <li><a href="{% url "w.logout" %}">{% trans "Logout" %}</a></li>
+  </ul>
+  <nav class="z-depth-2">
+    <div class="nav-wrapper blue-grey">
+      <ul class="left hide-on-med-and-down">
+        <li><a href="{% url "w.novel" n.pk %}"><i class="material-icons">arrow_back</i></a></li>
+      </ul>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#"><i class="material-icons">search</i></a></li>
+        <li><a href="#"><i class="material-icons">view_module</i></a></li>
+        <li><a class="dropdown-button" href="#" data-activates="menu-dropdown"><i class="material-icons right">more_vert</i></a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="input-field col s6">
+        <input value="{{c.title}}" id="title" type="text" class="validate" style="font-size:30px;" required>
+        <label class="active" for="first_name2">{% trans "Title" %}</label>
+      </div>
+    </div>
+    <textarea id="editor">
+      {% autoescape off %}
+      {{c.text}}
+      {% endautoescape %}
+    </textarea>
+  </div>
+
+  <div class="fixed-action-btn vertical">
+    <a class="btn-floating btn-large yellow darken-2 waves-effect waves-light">
+      <i class="material-icons">menu</i>
+    </a>
+    <ul>
+      <li><a id="publish" class="btn-floating green waves-effect waves-light"><i class="material-icons">publish</i></a></li>
+      <li><a id="restore" class="btn-floating blue waves-effect waves-light"><i class="material-icons">restore</i></a></li>
+      <li><a id="delete" class="btn-floating red waves-effect waves-light"><i class="material-icons">delete</i></a></li>
+    </ul>
+  </div>
+
+</div>
+<script src="//cdn.bootcss.com/froala-editor/2.6.4/js/froala_editor.min.js"></script>
+<script src="//cdn.bootcss.com/froala-editor/2.6.4/js/plugins/font_size.min.js"></script>
+<script src="//cdn.bootcss.com/froala-editor/2.6.4/js/plugins/font_family.min.js"></script>
+<script src="//cdn.bootcss.com/froala-editor/2.6.4/js/plugins/char_counter.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    var editor = $('textarea#editor').froalaEditor();
+    $('a#publish').click(function(e){
+      e.preventDefault()
+      var text=editor.froalaEditor('html.get');
+      var title=$('input#title').val();
+      if(!title){
+        Materialize.toast('{% trans "input title please" %}', 2000, 'rounded');
+        return;
+      }
+      var data = {
+        title: title,
+        text: text,
+      };
+      $.post('{% url 'w.chapter' n.pk c.seq %}', data, function(data){
+        {% if c.seq <= 0 %}
+        var url='{% url "w.chapter" n.pk "0000000" %}';
+        url = url.replace('0000000', data.seq);
+        window.location.replace(url);
+        {% else %}
+        Materialize.toast('{% trans "Publish Successfully" %}', 2000, 'rounded');
+        {% endif %}
+      });
+    });
+    $('a#restore').click(function(e){
+      e.preventDefault()
+      $.get('{% url 'chapter' n.pk c.seq %}?type=raw', function(data){
+        editor.froalaEditor('html.set', data.text);
+        $('input#title').val(data.title);
+      });
+    });
+    $('a#delete').click(function(e){
+      e.preventDefault();
+      {% if c.seq <= 0 %}
+      window.location.replace('{% url "w.novel" n.pk %}');
+      {% else %}
+      $.delete('{% url 'w.chapter' n.pk c.seq %}', function(data){
+        window.location.replace('{% url "w.novel" n.pk %}');
+      });
+      {% endif %}
+    });
+  });
+</script>
+{% endblock %}

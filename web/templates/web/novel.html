@@ -25,7 +25,7 @@
     <li><a class="waves-effect" href="{% url "chapter" n.pk c.seq %}">{{ c.fullname }}</a></li>
     {% endfor %}
   </ul>
-  <div class="content">
+  <div class="content container">
     <h5 class="title">{{ c.seq_name }} {{ c.title }}</h5>
     <article class="article z-depth-3">
       {% autoescape off %}

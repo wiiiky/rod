@@ -19,7 +19,14 @@ function csrfSafeMethod(method) {
     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
 
+var defaultError = function() {
+  Materialize.toast('api error', 2000, 'rounded');
+};
+
 $.post = function(url, data, success, error){
+  if(!error){
+    error=defaultError;
+  }
   $.ajax({
     type: 'POST',
     url: url,
@@ -36,6 +43,26 @@ $.post = function(url, data, success, error){
     }
   })
 }
+
+$.delete = function(url, success, error){
+  if(!error){
+    error=defaultError;
+  }
+  $.ajax({
+    type: 'DELETE',
+    url: url,
+    dataType: 'json',
+    success: success,
+    error: error,
+    beforeSend: function(xhr, settings) {
+        var csrftoken = $.getCookie('csrftoken');
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+  })
+}
+
 
 $.get = function(url, success, error) {
   $.ajax({

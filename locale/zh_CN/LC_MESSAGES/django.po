@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-02 23:50+0800\n"
+"POT-Creation-Date: 2017-08-03 18:06+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -45,6 +45,23 @@ msgstr "下一章"
 msgid "Edit - Road of Destiny"
 msgstr "编辑 - 命运之路"
 
+#: writer/templates/writer/chapter.html:18
+#: writer/templates/writer/index.html:15 writer/templates/writer/novel.html:11
+msgid "Logout"
+msgstr "注销"
+
+#: writer/templates/writer/chapter.html:36
+msgid "Title"
+msgstr "标题"
+
+#: writer/templates/writer/chapter.html:70
+msgid "input title please"
+msgstr "请输入标题"
+
+#: writer/templates/writer/chapter.html:83
+msgid "Publish Successfully"
+msgstr "发布成功"
+
 #: writer/templates/writer/login.html:17
 msgid "Username"
 msgstr "用户名"
@@ -64,3 +81,7 @@ msgstr "请输入验证信息"
 #: writer/templates/writer/login.html:53
 msgid "auth failed"
 msgstr "验证失败"
+
+#: writer/templates/writer/novel.html:28
+msgid "Chapters"
+msgstr "章节"
