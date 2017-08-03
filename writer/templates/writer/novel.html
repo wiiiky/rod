@@ -2,9 +2,6 @@
 {% load i18n %}
 {% load static %}
 
-{% block head %}
-<link href="{% static "css/w.index.css" %}" rel="stylesheet">
-{% endblock %}
 
 {% block body %}
 <div class="root">
@@ -23,15 +20,5 @@
       </ul>
     </div>
   </nav>
-
-  <div class="novels row">
-    {% for n in novels %}
-    <div class="col s6">
-      <div class="card novel">
-        <a class="waves-effect" href="{% url "w.novel" n.pk %}">{{ n.name }}</a>
-      </div>
-    </div>
-    {% endfor %}
-  </div>
 </div>
 {% endblock %}

@@ -1,0 +1,8 @@
+div.novels.row {
+  margin-top: 35px;
+  width: 1200px;
+}
+
+div.novels.row div.card.novel {
+  padding: 15px 10px;
+}

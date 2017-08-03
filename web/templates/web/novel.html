@@ -44,6 +44,20 @@
     $('.button-collapse').sideNav({
       closeOnClick: true,
     });
+    $('ul#slide-out li > a').click(function(e){
+      e.preventDefault();
+      var href = $(this).attr('href');
+      setTimeout(function(){
+          window.location = href;
+      }, 300);
+    });
+    $('div.footer > a').click(function(e){
+      e.preventDefault();
+      var href = $(this).attr('href');
+      setTimeout(function(){
+          window.location = href;
+      }, 300);
+    });
   });
 </script>
 {% endblock %}

@@ -1,7 +1,8 @@
 # encoding=utf-8
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render_to_response, get_object_or_404
+from django.forms.models import model_to_dict
 from web.models import Novel, Chapter
 
 
@@ -16,6 +17,8 @@ def novel(request, pk):
 def chapter(request, pk, seq):
     n = get_object_or_404(Novel, pk=pk, deleted=False)
     c = get_object_or_404(Chapter, novel=n, seq=seq)
+    if request.GET.get('type') == 'raw':
+        return JsonResponse(model_to_dict(c))
     pc = Chapter.objects.filter(novel=n, seq__lt=c.seq).order_by('-seq').first()
     nc = Chapter.objects.filter(novel=n, seq__gt=c.seq).order_by('seq').first()
     chapters = Chapter.objects.filter(novel=n).defer('text').order_by('seq')

@@ -6,4 +6,6 @@ from writer import views
 urlpatterns = [
     url(r'^$', views.index, name='w.index'),
     url(r'^login/?$', views.login, name='w.login'),
+    url(r'^logout/?$', views.logout, name='w.logout'),
+    url(r'^n/(?P<pk>\w+)$', views.novel, name='w.novel'),
 ]
