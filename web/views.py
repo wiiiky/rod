@@ -22,4 +22,5 @@ def chapter(request, pk, seq):
     pc = Chapter.objects.filter(novel=n, seq__lt=c.seq).order_by('-seq').first()
     nc = Chapter.objects.filter(novel=n, seq__gt=c.seq).order_by('seq').first()
     chapters = Chapter.objects.filter(novel=n).defer('text').order_by('seq')
+    title = '%s - %s' % (n.name, c.fullname)
     return render_to_response('web/novel.html', context=locals())

@@ -1,6 +1,7 @@
 *~
+db.sqlite3
 __pycache__
 /web/migrations/
 /writer/migrations/
 /static/
-db.sqlite3
+/rod/settings.py
