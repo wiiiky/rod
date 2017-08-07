@@ -26,6 +26,7 @@ div.root > div.content > article.article {
   margin-bottom: 20px;
   padding: 12px 20px;
   font-size: 1.2em;
+  border-radius: 10px;
 }
 
 div.root > div.footer {
