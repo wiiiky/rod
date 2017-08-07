@@ -22,11 +22,11 @@
   <!-- </div> -->
   <ul id="slide-out" class="side-nav">
     {% for c in chapters %}
-    <li><a class="waves-effect" href="{% url "chapter" n.pk c.seq %}">{{ c.fullname }}</a></li>
+    <li><a class="waves-effect" href="{% url "chapter" n.pk c.pk %}">{{ c.title }}</a></li>
     {% endfor %}
   </ul>
   <div class="content container">
-    <h5 class="title">{{ c.seq_name }} {{ c.title }}</h5>
+    <h5 class="title">{{ c.title }}</h5>
     <article class="article z-depth-3 unselectable">
       {% autoescape off %}
       {{ c.text }}
@@ -35,8 +35,8 @@
   </div>
 
   <div class="footer z-depth-1 indigo lighten-5">
-    {% if pc %}<a class="previous waves-effect waves-light" href="{% url "chapter" n.pk pc.seq %}">{{ previous_chapter }} {{ pc.title }}</a>{% endif %}
-    {% if nc %}<a class="next waves-effect waves-light" href="{% url "chapter" n.pk nc.seq %}">{{ next_chapter }} {{ nc.title }}</a>{% endif %}
+    {% if pc %}<a class="previous waves-effect waves-light" href="{% url "chapter" n.pk pc.pk %}">{{ previous_chapter }} {{ pc.title }}</a>{% endif %}
+    {% if nc %}<a class="next waves-effect waves-light" href="{% url "chapter" n.pk nc.pk %}">{{ next_chapter }} {{ nc.title }}</a>{% endif %}
   </div>
 </div>
 <script type="text/javascript">

@@ -14,8 +14,8 @@ class BaseModel(models.Model):
     id = models.CharField(max_length=32, primary_key=True,
                           default=default_uuid, editable=False)
     ctime = models.DateTimeField(
-        auto_now=True, db_index=True, help_text=u'创建时间')
-    utime = models.DateTimeField(auto_now_add=True, help_text=u'更新时间')
+        auto_now_add=True, db_index=True, help_text=u'创建时间')
+    utime = models.DateTimeField(auto_now=True, help_text=u'更新时间')
 
     class Meta:
         abstract = True
@@ -33,17 +33,7 @@ class Novel(BaseModel):
 class Chapter(BaseModel):
     '''章节'''
     novel = models.ForeignKey(Novel)
-    seq = models.PositiveIntegerField(default=1, help_text=u'章节编号')
     title = models.CharField(max_length=32, help_text=u'章节标题')
     text = models.TextField(help_text=u'正文,HTML格式')
 
-    class Meta:
-        unique_together = ('novel', 'seq')
 
-    @property
-    def seq_name(self):
-        return '第%s章' % num2chinese(self.seq, big=False, simp=True)
-
-    @property
-    def fullname(self):
-        return '%s %s' % (self.seq_name, self.title)

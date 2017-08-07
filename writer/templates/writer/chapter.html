@@ -74,10 +74,10 @@
         title: title,
         text: text,
       };
-      $.post('{% url 'w.chapter' n.pk c.seq %}', data, function(data){
-        {% if c.seq <= 0 %}
+      $.post('{% url 'w.chapter' n.pk c.pk %}', data, function(data){
+        {% if c.pk == "new" %}
         var url='{% url "w.chapter" n.pk "0000000" %}';
-        url = url.replace('0000000', data.seq);
+        url = url.replace('0000000', data.pk);
         window.location.replace(url);
         {% else %}
         Materialize.toast('{% trans "Publish Successfully" %}', 2000, 'rounded');
@@ -86,17 +86,17 @@
     });
     $('a#restore').click(function(e){
       e.preventDefault()
-      $.get('{% url 'chapter' n.pk c.seq %}?type=raw', function(data){
+      $.get('{% url 'chapter' n.pk c.pk %}?type=raw', function(data){
         editor.froalaEditor('html.set', data.text);
         $('input#title').val(data.title);
       });
     });
     $('a#delete').click(function(e){
       e.preventDefault();
-      {% if c.seq <= 0 %}
+      {% if c.pk == 0 %}
       window.location.replace('{% url "w.novel" n.pk %}');
       {% else %}
-      $.delete('{% url 'w.chapter' n.pk c.seq %}', function(data){
+      $.delete('{% url 'w.chapter' n.pk c.pk %}', function(data){
         window.location.replace('{% url "w.novel" n.pk %}');
       });
       {% endif %}
