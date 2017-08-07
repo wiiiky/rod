@@ -7,10 +7,8 @@
 {% endblock %}
 
 {% block body %}
-{% trans "Previous Chapter" as previous_chapter %}
-{% trans "Next Chapter" as next_chapter %}
 <div class="root">
-  <!-- <div class="navbar-fixed"> -->
+
   <nav class="z-depth-2">
     <div class="nav-wrapper blue-grey">
       <a class="brand-logo center unselectable" href="/">{{n.name}}</a>
@@ -19,7 +17,7 @@
       </ul>
     </div>
   </nav>
-  <!-- </div> -->
+
   <ul id="slide-out" class="side-nav">
     {% for c in chapters %}
     <li><a class="waves-effect" href="{% url "chapter" n.pk c.pk %}">{{ c.title }}</a></li>
@@ -27,17 +25,34 @@
   </ul>
   <div class="content container">
     <h5 class="title">{{ c.title }}</h5>
-    <article class="article z-depth-3 unselectable">
+    <article class="article z-depth-4 unselectable">
       {% autoescape off %}
       {{ c.text }}
       {% endautoescape %}
     </article>
+  <div class="fixed-action-btn toolbar">
+    <a class="btn-floating btn-large blue-grey darken-2">
+      <i class="large material-icons">mode_edit</i>
+    </a>
+    <ul>
+      {% if pc %}
+      <li class="waves-effect waves-light"><a class="link" href="{% url "chapter" n.pk pc.pk %}"><i class="material-icons left">navigate_before</i>{{ pc.title }}</a></li>
+      {% else %}
+      <li class="waves-effect waves-light"><a><i class="material-icons">not_interested</i></a></li>
+      {% endif %}
+      <li class="waves-effect waves-light"><a class="menu"><i class="material-icons">menu</i></a></li>
+      <li class="waves-effect waves-light"><a class="comment"><i class="material-icons">comment</i></a></li>
+      <li class="waves-effect waves-light"><a class="top"><i class="material-icons">vertical_align_top</i></a></li>
+      {% if nc %}
+      <li class="waves-effect waves-light"><a class="link" href="{% url "chapter" n.pk nc.pk %}"><i class="material-icons right">navigate_next</i>{{ nc.title }}</a></li>
+      {% else %}
+      <li class="waves-effect waves-light"><a><i class="material-icons">not_interested</i></a></li>
+      {% endif %}
+    </ul>
+  </div>
+        
   </div>
 
-  <div class="footer z-depth-1 indigo lighten-5">
-    {% if pc %}<a class="previous waves-effect waves-light" href="{% url "chapter" n.pk pc.pk %}">{{ previous_chapter }} {{ pc.title }}</a>{% endif %}
-    {% if nc %}<a class="next waves-effect waves-light" href="{% url "chapter" n.pk nc.pk %}">{{ next_chapter }} {{ nc.title }}</a>{% endif %}
-  </div>
 </div>
 <script type="text/javascript">
   $(document).ready(function(){
@@ -51,12 +66,21 @@
           window.location = href;
       }, 300);
     });
-    $('div.footer > a').click(function(e){
+    $('div.toolbar > ul a.link').click(function(e){
       e.preventDefault();
+      $('.fixed-action-btn.toolbar').closeToolbar();
       var href = $(this).attr('href');
       setTimeout(function(){
           window.location = href;
-      }, 250);
+      }, 400);
+    });
+    $('div.toolbar > ul a.menu').click(function(e){
+      e.preventDefault();
+      $('.button-collapse').sideNav('show');
+    });
+    $('div.toolbar > ul a.top').click(function(e){
+      e.preventDefault();
+      $('html,body').animate({scrollTop:0},'normal');
     });
   });
 </script>

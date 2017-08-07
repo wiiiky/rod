@@ -8,7 +8,7 @@ div.root > * {
 }
 
 div.root > div.content {
-  margin-bottom: 40px;
+  margin-bottom: 80px;
   margin-top: 35px;
 }
 
@@ -27,30 +27,6 @@ div.root > div.content > article.article {
   padding: 12px 20px;
   font-size: 1.2em;
   border-radius: 10px;
+  cursor: default;
 }
 
-div.root > div.footer {
-  width: 100%;
-  height: 44px;
-}
-
-div.root > div.footer > a {
-  width: 50%;
-  height: 44px;
-  line-height: 44px;
-  padding-left: 24px;
-  padding-right: 24px;
-  color: black;
-  cursor: pointer;
-}
-
-div.root > div.footer > a.previous {
-  background-color: #78909c;
-  float: left;
-}
-
-div.root > div.footer > a.next {
-  text-align: right;
-  background-color: #546e7a;
-  float: right;
-}
