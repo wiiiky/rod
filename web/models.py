@@ -35,5 +35,3 @@ class Chapter(BaseModel):
     novel = models.ForeignKey(Novel)
     title = models.CharField(max_length=32, help_text=u'章节标题')
     text = models.TextField(help_text=u'正文,HTML格式')
-
-
