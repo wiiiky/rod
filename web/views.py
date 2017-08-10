@@ -20,7 +20,6 @@ def chapter(request, pk, cpk):
     if cpk:
         c = get_object_or_404(Chapter, novel=n, pk=cpk)
     else:
-        print(n)
         c = get_list_or_404(Chapter.objects.order_by('ctime'), novel=n)[0]
     if request.GET.get('type') == 'raw':
         return JsonResponse(model_to_dict(c))
