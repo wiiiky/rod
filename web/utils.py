@@ -88,3 +88,13 @@ def num2chinese(num, big=False, simp=True, o=False, twoalt=False):
         result.append(c_symbol[2])
         result.append(''.join(c_basic[int(ch)] for ch in remainder))
     return ''.join(result)
+
+
+def get_client_ip(request):
+    '''获取客户端IP地址'''
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip

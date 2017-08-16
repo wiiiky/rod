@@ -35,3 +35,11 @@ class Chapter(BaseModel):
     novel = models.ForeignKey(Novel)
     title = models.CharField(max_length=32, help_text=u'章节标题')
     text = models.TextField(help_text=u'正文,HTML格式')
+
+
+class ChapterComment(BaseModel):
+    '''评论'''
+    chapter = models.ForeignKey(Chapter, help_text=u'章节')
+    content = models.TextField(help_text=u'评论内容')
+    nickname = models.CharField(max_length=32, help_text=u'昵称')
+    ip = models.CharField(max_length=128, help_text=u'ip地址')
