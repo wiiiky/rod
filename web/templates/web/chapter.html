@@ -134,12 +134,10 @@
         }
         $('textarea#comment-textarea').val('');
         var data = resp.data;
-        var nickname = $('<div/>').text(data.nickname).html();
-        var content = $('<div/>').text(data.content).html().replace('\n', '<br>');
         $('h5.no-comments').remove();
         var e = $(`<div class="card">
-          <span class="badge cyan black-text">`+nickname+`</span>
-          <p class="content">` +content+ `</p>
+          <span class="badge cyan black-text">`+data.nickname+`</span>
+          <p class="content">` +data.content+ `</p>
         </div>`);
         e.hide();
         $('div#comment-modal div.cards').append(e);

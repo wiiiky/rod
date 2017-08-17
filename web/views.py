@@ -6,6 +6,7 @@ from django.views.decorators.http import require_http_methods
 from django.forms.models import model_to_dict
 from web.models import Novel, Chapter, ChapterComment
 from web.utils import get_client_ip
+from django.utils.html import escape, linebreaks
 
 
 @require_http_methods(['GET'])
@@ -48,4 +49,7 @@ def chapter_comment(request, pk, cpk):
         nickname = 'Anonymous'
     cc = ChapterComment(chapter=c, nickname=nickname, content=content, ip=ip)
     cc.save()
-    return JsonResponse({'retcode':0, 'data':model_to_dict(cc)})
+    data = model_to_dict(cc)
+    data['content'] = linebreaks(data['content'], True)
+    data['nickname'] = escape(data['nickname'])
+    return JsonResponse({'retcode':0, 'data':data})
