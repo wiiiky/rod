@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-03 18:06+0800\n"
+"POT-Creation-Date: 2017-08-17 11:56+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,17 +29,21 @@ msgstr "简体中文"
 msgid "Road of Destiny"
 msgstr "命运之路"
 
+#: web/templates/web/chapter.html:55 web/templates/web/chapter.html:77
+msgid "Comment"
+msgstr "评论"
+
+#: web/templates/web/chapter.html:65
+msgid "No Comment"
+msgstr "暂无评论"
+
+#: web/templates/web/chapter.html:80 writer/templates/writer/login.html:27
+msgid "Submit"
+msgstr "提交"
+
 #: web/templates/web/index.html:13
 msgid "Enter"
 msgstr "进入"
-
-#: web/templates/web/novel.html:10
-msgid "Previous Chapter"
-msgstr "上一章"
-
-#: web/templates/web/novel.html:11
-msgid "Next Chapter"
-msgstr "下一章"
 
 #: writer/templates/writer/base.html:3
 msgid "Edit - Road of Destiny"
@@ -70,10 +74,6 @@ msgstr "用户名"
 msgid "Password"
 msgstr "密码"
 
-#: writer/templates/writer/login.html:27
-msgid "Submit"
-msgstr "提交"
-
 #: writer/templates/writer/login.html:42
 msgid "input auth info please"
 msgstr "请输入验证信息"
@@ -85,3 +85,9 @@ msgstr "验证失败"
 #: writer/templates/writer/novel.html:28
 msgid "Chapters"
 msgstr "章节"
+
+#~ msgid "Previous Chapter"
+#~ msgstr "上一章"
+
+#~ msgid "Next Chapter"
+#~ msgstr "下一章"
