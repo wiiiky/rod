@@ -30,3 +30,28 @@ div.root > div.content > article.article {
   cursor: default;
 }
 
+div#comment-modal {
+  max-height: 60%;
+}
+
+div#comment-modal div.card {
+  padding: 6px 12px;
+}
+
+div#comment-modal div.card span.badge {
+  border-radius: 4px;
+}
+
+div#comment-modal div.card p.content {
+  display: block;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+div#comment-modal div.add-comment {
+  margin-top: 22px;
+}
+
+div#comment-modal div.add-comment button#submit {
+  float: right;
+}

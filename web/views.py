@@ -33,7 +33,7 @@ def chapter(request, pk, cpk):
     chapters = Chapter.objects.filter(novel=n).defer('text').order_by('ctime')
     comments = ChapterComment.objects.filter(chapter=c).order_by('ctime')
     title = '%s - %s' % (n.name, c.title)
-    return render_to_response('web/novel.html', context=locals())
+    return render_to_response('web/chapter.html', context=locals())
 
 
 @require_http_methods(['POST'])
@@ -44,8 +44,8 @@ def chapter_comment(request, pk, cpk):
     ip = get_client_ip(request)
     if not content:
         return JsonResponse({'retcode': 1})
-    if not nickanme:
+    if not nickname:
         nickname = 'Anonymous'
-    cc = ChapterComment(Chapter=c, nickname=nickname, content=content, ip=ip)
+    cc = ChapterComment(chapter=c, nickname=nickname, content=content, ip=ip)
     cc.save()
-    return JsonResponse(model_to_dict(cc))
+    return JsonResponse({'retcode':0, 'data':model_to_dict(cc)})
