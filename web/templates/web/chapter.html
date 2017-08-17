@@ -132,6 +132,7 @@
         if(resp.retcode!=0){
           return;
         }
+        $('textarea#comment-textarea').val('');
         var data = resp.data;
         $('h5.no-comments').remove();
         var e = $(`<div class="card">
