@@ -3,7 +3,6 @@
 {% trans "Road of Destiny" as default_title %}
 <!DOCTYPE html>
 <html>
-<script type="text/javascript" src="//tajs.qq.com/stats?sId=63484186" charset="UTF-8"></script>
 <head>
   <meta charset="utf-8">
 
@@ -18,6 +17,15 @@
   {% block head %}{% endblock %}
 </head>
 
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?98c49e634346a5ec820b6ec93c773d6f";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
 <body>
   <script src="//cdn.bootcss.com/materialize/0.100.1/js/materialize.min.js"></script>
   <script src="{% static "js/base.js" %}"></script>
