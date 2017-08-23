@@ -1,0 +1,40 @@
+{% extends 'web/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block head %}
+<link href="{% static "css/novel.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<div class="root">
+  <nav class="z-depth-2">
+    <div class="nav-wrapper blue-grey">
+      <a class="brand-logo center unselectable" href="/">{{n.name}}</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="description">
+      {{ n.description|linebreaks }}
+    </div>
+    <ul class="collapsible popout" data-collapsible="accordion">
+      {% for c in chapters %}
+      <li class="chapter">
+        <div class="collapsible-header"><i class="material-icons">bookmark</i>{{ c.title }}</div>
+        <div class="collapsible-body chapter-body">
+          <span class="chapter-description">{{ c.description|linebreaks }}</span>
+          <a href="{% url "chapter" n.pk c.pk %}">阅读</a>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+</div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });
+</script>
+{% endblock %}

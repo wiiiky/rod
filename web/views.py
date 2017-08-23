@@ -17,16 +17,16 @@ def index(request):
 
 @require_http_methods(['GET'])
 def novel(request, pk):
-    return chapter(request, pk, '')
+    n = get_object_or_404(Novel, pk=pk, deleted=False)
+    chapters = Chapter.objects.filter(novel=n).defer('text').order_by('ctime')
+    title = n.name
+    return render_to_response('web/novel.html', context=locals())
 
 
 @require_http_methods(['GET'])
 def chapter(request, pk, cpk):
     n = get_object_or_404(Novel, pk=pk, deleted=False)
-    if cpk:
-        c = get_object_or_404(Chapter, novel=n, pk=cpk)
-    else:
-        c = get_list_or_404(Chapter.objects.order_by('ctime'), novel=n)[0]
+    c = get_object_or_404(Chapter, novel=n, pk=cpk)
     if request.GET.get('type') == 'raw':
         return JsonResponse(model_to_dict(c))
     pc = Chapter.objects.filter(novel=n, ctime__lt=c.ctime).order_by('-ctime').first()

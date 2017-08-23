@@ -1,0 +1,7 @@
+li.chapter div.chapter-body {
+    text-align: right;
+}
+
+li.chapter span.chapter-description {
+    text-align: left;
+}

@@ -25,6 +25,7 @@ class Novel(BaseModel):
     '''小说'''
     name = models.CharField(max_length=32, help_text=u'书名')
     name_en = models.CharField(max_length=64, help_text=u'英文名')
+    description = models.CharField(max_length=4096, help_text=u'简介', default='')
     user = models.ForeignKey(User, help_text=u'创建者')
     deleted = models.BooleanField(
         default=False, db_index=True, help_text=u'是否删除')
@@ -34,6 +35,7 @@ class Chapter(BaseModel):
     '''章节'''
     novel = models.ForeignKey(Novel)
     title = models.CharField(max_length=32, help_text=u'章节标题')
+    description = models.CharField(max_length=4096, help_text=u'简介', default='')
     text = models.TextField(help_text=u'正文,HTML格式')
 
 
