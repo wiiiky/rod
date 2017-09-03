@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-03 21:44+0800\n"
+"POT-Creation-Date: 2017-09-03 21:55+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,33 +29,33 @@ msgstr "简体中文"
 msgid "Road of Destiny"
 msgstr "命运之路"
 
-#: web/templates/web/chapter.html:55 web/templates/web/chapter.html:77
+#: web/templates/web/chapter.html:11 web/templates/web/novel.html:11
+msgid "Copyright Statement"
+msgstr "版权声明"
+
+#: web/templates/web/chapter.html:12 web/templates/web/novel.html:12
+msgid "About This Site"
+msgstr "关于本站"
+
+#: web/templates/web/chapter.html:22 web/templates/web/novel.html:21
+msgid "About"
+msgstr "关于"
+
+#: web/templates/web/chapter.html:61 web/templates/web/chapter.html:83
 msgid "Comment"
 msgstr "评论"
 
-#: web/templates/web/chapter.html:65
+#: web/templates/web/chapter.html:71
 msgid "No Comment"
 msgstr "暂无评论"
 
-#: web/templates/web/chapter.html:80 writer/templates/writer/login.html:27
+#: web/templates/web/chapter.html:86 writer/templates/writer/login.html:27
 msgid "Submit"
 msgstr "提交"
 
 #: web/templates/web/index.html:13
 msgid "Enter"
 msgstr "进入"
-
-#: web/templates/web/novel.html:11
-msgid "Copyright Statement"
-msgstr "版权声明"
-
-#: web/templates/web/novel.html:12
-msgid "About This Site"
-msgstr "关于本站"
-
-#: web/templates/web/novel.html:21
-msgid "About"
-msgstr "关于"
 
 #: web/templates/web/novel.html:36
 msgid "Read"

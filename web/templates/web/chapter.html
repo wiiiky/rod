@@ -7,13 +7,19 @@
 {% endblock %}
 
 {% block body %}
+<ul id="about-dropdown" class="dropdown-content">
+  <li><a href="{% url "copyright" %}">{% trans "Copyright Statement"%}</a></li>
+  <li><a href="{% url "about" %}">{% trans "About This Site" %}</a></li>
+</ul>
 <div class="root">
-
   <nav class="z-depth-2">
     <div class="nav-wrapper blue-grey">
       <a class="brand-logo center unselectable" href="/">{{n.name}}</a>
       <ul id="nav-mobile" class="left">
         <li><a href="#" data-activates="slide-out" class="button-collapse show-on-large"><i class="material-icons">menu</i></a></li>
+      </ul>
+      <ul class="right hide-on-med-and-down">
+        <li><a id="about-button" class="dropdown-button" href="#!" data-activates="about-dropdown">{% trans "About" %}<i class="material-icons right">arrow_drop_down</i></a></li>
       </ul>
     </div>
   </nav>
@@ -90,6 +96,17 @@
 <script type="text/javascript">
   $(document).ready(function(){
     $('.modal').modal();
+    $('#about-button').dropdown({
+        inDuration: 300,
+        outDuration: 225,
+        constrainWidth: false, // Does not change width of dropdown to that of the activator
+        hover: false, // Activate on hover
+        gutter: 0, // Spacing from edge
+        belowOrigin: false, // Displays dropdown below the button
+        alignment: 'right', // Displays dropdown with edge aligned to the left of button
+        stopPropagation: false // Stops event propagation
+      }
+    );
     $('.button-collapse').sideNav({closeOnClick: true});
     $('ul#slide-out li > a').click(function(e){
       e.preventDefault();
