@@ -22,6 +22,15 @@ def novel(request, pk):
     title = n.name
     return render_to_response('web/novel.html', context=locals())
 
+@require_http_methods(['GET'])
+def copyright(request):
+    title = u'版权声明 - Copyright'
+    return render_to_response('web/copyright.html', context=locals())
+
+@require_http_methods(['GET'])
+def about(request):
+    title = u'关于 - About'
+    return render_to_response('web/about.html', context=locals())
 
 @require_http_methods(['GET'])
 def chapter(request, pk, cpk):

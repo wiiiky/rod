@@ -7,10 +7,19 @@
 {% endblock %}
 
 {% block body %}
+<ul id="about-dropdown" class="dropdown-content">
+  <li><a href="{% url "copyright" %}">{% trans "Copyright Statement"%}</a></li>
+  <li><a href="{% url "about" %}">{% trans "About This Site" %}</a></li>
+<!--  <li class="divider"></li>-->
+<!--  <li><a href="#!">three</a></li>-->
+</ul>
 <div class="root">
   <nav class="z-depth-2">
     <div class="nav-wrapper blue-grey">
       <a class="brand-logo center unselectable" href="/">{{n.name}}</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a id="about-button" class="dropdown-button" href="#!" data-activates="about-dropdown">{% trans "About" %}<i class="material-icons right">arrow_drop_down</i></a></li>
+      </ul>
     </div>
   </nav>
 
@@ -24,7 +33,7 @@
         <div class="collapsible-header"><i class="material-icons">bookmark</i>{{ c.title }}</div>
         <div class="collapsible-body chapter-body">
           <span class="chapter-description">{{ c.description|linebreaks }}</span>
-          <a href="{% url "chapter" n.pk c.pk %}">阅读</a>
+          <a href="{% url "chapter" n.pk c.pk %}">{% trans "Read" %}</a>
         </div>
       </li>
       {% endfor %}
@@ -35,6 +44,17 @@
 <script type="text/javascript">
   $(document).ready(function(){
     $('.collapsible').collapsible();
+    $('#about-button').dropdown({
+        inDuration: 300,
+        outDuration: 225,
+        constrainWidth: false, // Does not change width of dropdown to that of the activator
+        hover: false, // Activate on hover
+        gutter: 0, // Spacing from edge
+        belowOrigin: false, // Displays dropdown below the button
+        alignment: 'right', // Displays dropdown with edge aligned to the left of button
+        stopPropagation: false // Stops event propagation
+      }
+    );
   });
 </script>
 {% endblock %}
