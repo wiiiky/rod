@@ -22,15 +22,18 @@ def novel(request, pk):
     title = n.name
     return render_to_response('web/novel.html', context=locals())
 
+
 @require_http_methods(['GET'])
 def copyright(request):
     title = u'版权声明 - Copyright'
     return render_to_response('web/copyright.html', context=locals())
 
+
 @require_http_methods(['GET'])
 def about(request):
     title = u'关于 - About'
     return render_to_response('web/about.html', context=locals())
+
 
 @require_http_methods(['GET'])
 def chapter(request, pk, cpk):
@@ -38,8 +41,10 @@ def chapter(request, pk, cpk):
     c = get_object_or_404(Chapter, novel=n, pk=cpk)
     if request.GET.get('type') == 'raw':
         return JsonResponse(model_to_dict(c))
-    pc = Chapter.objects.filter(novel=n, ctime__lt=c.ctime).order_by('-ctime').first()
-    nc = Chapter.objects.filter(novel=n, ctime__gt=c.ctime).order_by('ctime').first()
+    pc = Chapter.objects.filter(
+        novel=n, ctime__lt=c.ctime).order_by('-ctime').first()
+    nc = Chapter.objects.filter(
+        novel=n, ctime__gt=c.ctime).order_by('ctime').first()
     chapters = Chapter.objects.filter(novel=n).defer('text').order_by('ctime')
     comments = ChapterComment.objects.filter(chapter=c).order_by('ctime')
     title = '%s - %s' % (n.name, c.title)
@@ -61,4 +66,4 @@ def chapter_comment(request, pk, cpk):
     data = model_to_dict(cc)
     data['content'] = linebreaks(data['content'], True)
     data['nickname'] = escape(data['nickname'])
-    return JsonResponse({'retcode':0, 'data':data})
+    return JsonResponse({'retcode': 0, 'data': data})

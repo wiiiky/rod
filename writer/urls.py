@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^logout/?$', views.logout, name='w.logout'),
     url(r'^n/(?P<pk>\w+)/?$', views.novel, name='w.novel'),
     url(r'^n/(?P<pk>\w+)/c/(?P<cpk>\w+)/?$', views.chapter, name='w.chapter'),
+    url(r'^image/?$', views.upload_image, name='image-upload'),
 ]

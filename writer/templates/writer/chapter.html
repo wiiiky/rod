@@ -4,9 +4,11 @@
 
 {% block head %}
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<link href="//cdn.bootcss.com/froala-editor/2.6.4/css/froala_editor.min.css" rel="stylesheet">
-<link href="//cdn.bootcss.com/froala-editor/2.6.4/css/froala_style.min.css" rel="stylesheet">
-<link href="//cdn.bootcss.com/froala-editor/2.6.4/css/plugins/char_counter.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/froala-editor/2.7.0/css/froala_editor.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/froala-editor/2.7.0/css/froala_style.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/froala-editor/2.7.0/css/plugins/char_counter.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/froala-editor/2.7.0/css/plugins/colors.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/froala-editor/2.7.0/css/plugins/image.min.css" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
@@ -33,7 +35,13 @@
     <div class="row">
       <div class="input-field col s6">
         <input value="{{c.title}}" id="title" type="text" class="validate" style="font-size:30px;" required>
-        <label class="active" for="first_name2">{% trans "Title" %}</label>
+        <label class="active" for="title">{% trans "Title" %}</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input value="{{c.description}}" id="description" type="text" class="validate" style="font-size:20px;">
+        <label class="active" for="description">{% trans "Description" %}</label>
       </div>
     </div>
     <textarea id="editor">
@@ -55,17 +63,29 @@
   </div>
 
 </div>
-<script src="//cdn.bootcss.com/froala-editor/2.6.4/js/froala_editor.min.js"></script>
-<script src="//cdn.bootcss.com/froala-editor/2.6.4/js/plugins/font_size.min.js"></script>
-<script src="//cdn.bootcss.com/froala-editor/2.6.4/js/plugins/font_family.min.js"></script>
-<script src="//cdn.bootcss.com/froala-editor/2.6.4/js/plugins/char_counter.min.js"></script>
+<script src="//cdn.bootcss.com/froala-editor/2.7.0/js/froala_editor.min.js"></script>
+<script src="//cdn.bootcss.com/froala-editor/2.7.0/js/languages/zh_cn.js"></script>
+<script src="//cdn.bootcss.com/froala-editor/2.7.0/js/plugins/font_size.min.js"></script>
+<script src="//cdn.bootcss.com/froala-editor/2.7.0/js/plugins/colors.min.js"></script>
+<script src="//cdn.bootcss.com/froala-editor/2.7.0/js/plugins/font_family.min.js"></script>
+<script src="//cdn.bootcss.com/froala-editor/2.7.0/js/plugins/char_counter.min.js"></script>
+<script src="//cdn.bootcss.com/froala-editor/2.7.0/js/plugins/image.min.js"></script>
 <script type="text/javascript">
   $(document).ready(function(){
-    var editor = $('textarea#editor').froalaEditor();
+    var editor = $('textarea#editor').froalaEditor({
+      requestWithCORS: true,
+      requestWithCredentials: true,
+      imageUpload: true,
+      imageUploadMethod: 'POST',
+      imageUploadParam: '{{ image_field }}',
+      imageUploadURL: '{% url "image-upload" %}',
+      imageUploadParams: { 'csrfmiddlewaretoken': '{{ csrf_token }}' },
+    });
     $('a#publish').click(function(e){
       e.preventDefault()
       var text=editor.froalaEditor('html.get');
       var title=$('input#title').val();
+      var description=$('input#description').val();
       if(!title){
         Materialize.toast('{% trans "input title please" %}', 2000, 'rounded');
         return;
@@ -73,6 +93,7 @@
       var data = {
         title: title,
         text: text,
+        description: description,
       };
       $.post('{% url 'w.chapter' n.pk c.pk %}', data, function(data){
         {% if c.pk == "new" %}
@@ -89,6 +110,7 @@
       $.get('{% url 'chapter' n.pk c.pk %}?type=raw', function(data){
         editor.froalaEditor('html.set', data.text);
         $('input#title').val(data.title);
+        $('input#description').val(data.description);
       });
     });
     $('a#delete').click(function(e){

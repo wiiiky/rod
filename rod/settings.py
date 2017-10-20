@@ -53,6 +53,7 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
     'writer.middleware.WriterAuthMiddleware',
     'writer.middleware.DataPreprocessMiddleware',
+    'writer.middleware.ExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'rod.urls'
@@ -132,3 +133,17 @@ USE_TZ = True
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+
+
+UPLOADS = {
+    'IMAGE': {
+        'PATH': '/tmp/data/',
+        'PREFIX': 'rod-image-%Y-%m-%d-',
+        'URL': '/static/u/',
+        'FIELD': 'image',
+        'ALLOWED_CONTENT_TYPES': {
+            'image/jpeg': '.jpeg',
+            'image/png': '.png',
+        }
+    }
+}
