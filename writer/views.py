@@ -13,6 +13,7 @@ from datetime import datetime
 from furl import furl
 import hashlib
 import tempfile
+import stat
 import os
 
 
@@ -99,6 +100,8 @@ def upload_image(request):
         name = prefix + md5.hexdigest() + extension
         path = os.path.join(setting['PATH'], name)
         os.rename(f.name, path)
+        os.chmod(path, stat.S_IRUSR | stat.S_IWUSR |
+                 stat.S_IRGRP | stat.S_IWGRP | stat.S_IROTH)
         url = str(furl(setting['URL']).add(path=name))
         return JsonResponse({'link': url})
     except Exception as e:
