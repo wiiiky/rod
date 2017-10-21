@@ -62,12 +62,14 @@ def chapter(request, pk, cpk):
     elif request.method == 'POST':
         text = request.data['text']
         title = request.data['title']
+        description = request.data['description']
         if cpk != 'new':
             c = get_object_or_404(Chapter, novel=n, pk=cpk)
         else:
             c = Chapter(novel=n)
         c.text = text
         c.title = title
+        c.description = description
         c.save()
         return JsonResponse(to_dict(c))
     c = get_object_or_404(Chapter, novel=n, pk=cpk)

@@ -9,6 +9,9 @@
 <link href="//cdn.bootcss.com/froala-editor/2.7.0/css/plugins/char_counter.min.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/froala-editor/2.7.0/css/plugins/colors.min.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/froala-editor/2.7.0/css/plugins/image.min.css" rel="stylesheet">
+<style type="text/css">
+  div.fr-wrapper > div:first-child[style*="z-index: 9999"]{display:none;}
+</style>
 {% endblock %}
 
 {% block body %}
@@ -39,8 +42,8 @@
       </div>
     </div>
     <div class="row">
-      <div class="input-field col s6">
-        <input value="{{c.description}}" id="description" type="text" class="validate" style="font-size:20px;">
+      <div class="input-field col s12">
+        <input value="{{c.description}}" id="description" type="text" class="validate" style="font-size:14px;">
         <label class="active" for="description">{% trans "Description" %}</label>
       </div>
     </div>
