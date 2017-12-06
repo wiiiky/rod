@@ -27,14 +27,14 @@ class Novel(BaseModel):
     name_en = models.CharField(max_length=64, help_text=u'英文名')
     description = models.CharField(
         max_length=4096, help_text=u'简介', default='')
-    user = models.ForeignKey(User, help_text=u'创建者')
+    user = models.ForeignKey(User, help_text=u'创建者', on_delete=models.CASCADE)
     deleted = models.BooleanField(
         default=False, db_index=True, help_text=u'是否删除')
 
 
 class Chapter(BaseModel):
     '''章节'''
-    novel = models.ForeignKey(Novel)
+    novel = models.ForeignKey(Novel, on_delete=models.CASCADE)
     title = models.CharField(max_length=32, help_text=u'章节标题')
     description = models.CharField(
         max_length=4096, help_text=u'简介', default='')
@@ -43,7 +43,7 @@ class Chapter(BaseModel):
 
 class ChapterComment(BaseModel):
     '''评论'''
-    chapter = models.ForeignKey(Chapter, help_text=u'章节')
+    chapter = models.ForeignKey(Chapter, help_text=u'章节', on_delete=models.CASCADE)
     content = models.TextField(help_text=u'评论内容')
     nickname = models.CharField(max_length=32, help_text=u'昵称')
     ip = models.CharField(max_length=128, help_text=u'ip地址')
