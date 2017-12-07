@@ -95,6 +95,13 @@
 </div>
 <script type="text/javascript">
   $(document).ready(function(){
+    $('div.root > div.content > article.article > p').each(function(i){
+      var ptr = $(this);
+      ptr.css("opacity", "0");
+      setTimeout(function(){
+        ptr.animate({opacity: '+=1'}, 'slow');
+      }, 50 * i);
+    });
     $('.modal').modal();
     $('#about-button').dropdown({
         inDuration: 300,
