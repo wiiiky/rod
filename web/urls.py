@@ -1,14 +1,14 @@
 # encoding=utf-8
 
-from django.conf.urls import url, include
+from django.urls import path
 from web import views
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'^n/(?P<pk>\w+)$', views.novel, name='novel'),
-    url(r'^n/(?P<pk>\w+)/c/(?P<cpk>\w+)$', views.chapter, name='chapter'),
-    url(r'^n/(?P<pk>\w+)/c/(?P<cpk>\w+)/comment',
-        views.chapter_comment, name='chapter.comment'),
-    url(r'^copyright/?$', views.copyright, name='copyright'),
-    url(r'^about/?$', views.about, name='about'),
+    path('', views.index, name='index'),
+    path('n/<slug:pk>', views.novel, name='novel'),
+    path('n/<slug:pk>/c/<slug:cpk>', views.chapter, name='chapter'),
+    path('n/<slug:pk>/c/<slug:cpk>/comment',
+         views.chapter_comment, name='chapter.comment'),
+    path('copyright', views.copyright, name='copyright'),
+    path('about', views.about, name='about'),
 ]

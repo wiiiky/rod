@@ -4,7 +4,6 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import authenticate, login as authlogin, logout as authlogout
 from django.http import JsonResponse, HttpResponseRedirect
 from django.views.decorators.http import require_http_methods
-from django.conf import settings
 from django.urls import reverse
 from writer.utils import to_dict
 from writer.errors import HttpExecption
@@ -42,6 +41,15 @@ def logout(request):
     authlogout(request)
     return HttpResponseRedirect(reverse('w.login'))
 
+@require_http_methods(['GET'])
+def profile(request):
+    user = request.user
+    return render(request, 'writer/profile.html', locals())
+
+@require_http_methods(['GET'])
+def settings(request):
+    user = request.user
+    return render(request, 'writer/settings.html', locals())
 
 @require_http_methods(['GET'])
 def novel(request, pk):
@@ -54,6 +62,7 @@ def novel(request, pk):
 def chapter(request, pk, cpk):
     n = get_object_or_404(Novel, pk=pk, deleted=False)
     if request.method == 'GET':
+        from django.conf import settings
         c = {'title': '', 'text': '', 'pk': 'new'}
         image_field = settings.UPLOADS['IMAGE']['FIELD']
         if cpk != 'new':
@@ -78,6 +87,7 @@ def chapter(request, pk, cpk):
 
 
 def get_upload_image_extension(content_type):
+    from django.conf import settings
     extension = settings.UPLOADS['IMAGE'][
         'ALLOWED_CONTENT_TYPES'].get(content_type)
     if not extension:
@@ -87,6 +97,7 @@ def get_upload_image_extension(content_type):
 
 @require_http_methods(['POST'])
 def upload_image(request):
+    from django.conf import settings
     setting = settings.UPLOADS['IMAGE']
     field = setting['FIELD']
     uploaded = request.FILES.get(field)

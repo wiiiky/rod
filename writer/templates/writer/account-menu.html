@@ -1,0 +1,7 @@
+{% load i18n %}
+<ul id="menu-dropdown" class="dropdown-content">
+  <li><a href="{% url "w.profile" %}">{% trans "View profile" %}</a></li>
+  <li><a href="{% url "w.settings" %}">{% trans "Settings" %}</a></li>
+  <li class="divider"></li>
+  <li><a href="{% url "w.logout" %}">{% trans "Logout" %}</a></li>
+</ul>

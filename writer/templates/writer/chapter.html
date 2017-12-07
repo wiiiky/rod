@@ -4,24 +4,20 @@
 
 {% block head %}
 <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<link href="//cdn.bootcss.com/froala-editor/2.7.0/css/froala_editor.min.css" rel="stylesheet">
-<link href="//cdn.bootcss.com/froala-editor/2.7.0/css/froala_style.min.css" rel="stylesheet">
-<link href="//cdn.bootcss.com/froala-editor/2.7.0/css/plugins/char_counter.min.css" rel="stylesheet">
-<link href="//cdn.bootcss.com/froala-editor/2.7.0/css/plugins/colors.min.css" rel="stylesheet">
-<link href="//cdn.bootcss.com/froala-editor/2.7.0/css/plugins/image.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/froala-editor/2.7.2/css/froala_editor.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/froala-editor/2.7.2/css/froala_style.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/froala-editor/2.7.2/css/plugins/char_counter.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/froala-editor/2.7.2/css/plugins/colors.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/froala-editor/2.7.2/css/plugins/image.min.css" rel="stylesheet">
 <style type="text/css">
+  <!-- 隐藏froala提示 -->
   div.fr-wrapper > div:first-child[style*="z-index: 9999"]{display:none;}
 </style>
 {% endblock %}
 
 {% block body %}
 <div class="root">
-  <ul id="menu-dropdown" class="dropdown-content">
-    <li><a href="#!">one</a></li>
-    <li><a href="#!">two</a></li>
-    <li class="divider"></li>
-    <li><a href="{% url "w.logout" %}">{% trans "Logout" %}</a></li>
-  </ul>
+  {% include "writer/account-menu.html" %}
   <nav class="z-depth-2">
     <div class="nav-wrapper blue-grey">
       <ul class="left hide-on-med-and-down">

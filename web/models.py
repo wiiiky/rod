@@ -43,7 +43,8 @@ class Chapter(BaseModel):
 
 class ChapterComment(BaseModel):
     '''评论'''
-    chapter = models.ForeignKey(Chapter, help_text=u'章节', on_delete=models.CASCADE)
+    chapter = models.ForeignKey(
+        Chapter, help_text=u'章节', on_delete=models.CASCADE)
     content = models.TextField(help_text=u'评论内容')
     nickname = models.CharField(max_length=32, help_text=u'昵称')
     ip = models.CharField(max_length=128, help_text=u'ip地址')

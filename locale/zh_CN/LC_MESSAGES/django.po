@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-03 21:55+0800\n"
+"POT-Creation-Date: 2017-12-07 11:23+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: rod/settings.py:114
+#: rod/settings.py:115
 msgid "English"
 msgstr "英文"
 
-#: rod/settings.py:115
+#: rod/settings.py:116
 msgid "Simplified Chinese"
 msgstr "简体中文"
 
@@ -61,24 +61,36 @@ msgstr "进入"
 msgid "Read"
 msgstr "阅读"
 
+#: writer/templates/writer/account-menu.html:3
+msgid "View profile"
+msgstr "个人资料"
+
+#: writer/templates/writer/account-menu.html:4
+msgid "Settings"
+msgstr "设置"
+
+#: writer/templates/writer/account-menu.html:6
+#: writer/templates/writer/chapter.html:24
+msgid "Logout"
+msgstr "注销"
+
 #: writer/templates/writer/base.html:3
 msgid "Edit - Road of Destiny"
 msgstr "编辑 - 命运之路"
 
-#: writer/templates/writer/chapter.html:18
-#: writer/templates/writer/index.html:15 writer/templates/writer/novel.html:11
-msgid "Logout"
-msgstr "注销"
-
-#: writer/templates/writer/chapter.html:36
+#: writer/templates/writer/chapter.html:42
 msgid "Title"
 msgstr "标题"
 
-#: writer/templates/writer/chapter.html:70
+#: writer/templates/writer/chapter.html:48
+msgid "Description"
+msgstr "描述"
+
+#: writer/templates/writer/chapter.html:94
 msgid "input title please"
 msgstr "请输入标题"
 
-#: writer/templates/writer/chapter.html:83
+#: writer/templates/writer/chapter.html:108
 msgid "Publish Successfully"
 msgstr "发布成功"
 
@@ -98,7 +110,7 @@ msgstr "请输入验证信息"
 msgid "auth failed"
 msgstr "验证失败"
 
-#: writer/templates/writer/novel.html:28
+#: writer/templates/writer/novel.html:23
 msgid "Chapters"
 msgstr "章节"
 

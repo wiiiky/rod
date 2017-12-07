@@ -4,12 +4,7 @@
 
 {% block body %}
 <div class="root">
-  <ul id="menu-dropdown" class="dropdown-content">
-    <li><a href="#!">one</a></li>
-    <li><a href="#!">two</a></li>
-    <li class="divider"></li>
-    <li><a href="{% url "w.logout" %}">{% trans "Logout" %}</a></li>
-  </ul>
+  {% include "writer/account-menu.html" %}
   <nav class="z-depth-2">
     <div class="nav-wrapper blue-grey">
       <ul class="left hide-on-med-and-down">
