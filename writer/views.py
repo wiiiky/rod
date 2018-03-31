@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login as authlogin, logout as auth
 from django.http import JsonResponse, HttpResponseRedirect
 from django.views.decorators.http import require_http_methods
 from django.urls import reverse
-from writer.utils import to_dict
+from util.model import to_dict
 from writer.errors import HttpExecption
 from web.models import Novel, Chapter
 from datetime import datetime

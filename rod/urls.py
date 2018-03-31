@@ -17,6 +17,7 @@ from django.conf.urls import include
 from django.urls import path
 
 urlpatterns = [
-    path('', include('web.urls')),
     path('w/', include('writer.urls')),
+    path('api/', include('api.urls')),
+    path('', include('web.urls')),
 ]
